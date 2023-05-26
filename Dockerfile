@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:23.04
 
 # Maintainer
 LABEL maintainer "Alexander Graf <alex@otherguy.io>"
@@ -35,7 +35,7 @@ RUN mkdir -p /opt/dropbox /opt/dropbox/.dropbox /opt/dropbox/Dropbox \
 
 # https://help.dropbox.com/installs-integrations/desktop/linux-repository
 RUN apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E \
- && add-apt-repository 'deb https://linux.dropbox.com/ubuntu jammy main' \
+ && add-apt-repository 'deb https://linux.dropbox.com/ubuntu lunar main' \
  && apt-get update \
  && apt-get -qqy install dropbox \
  && apt-get -qqy autoclean \
