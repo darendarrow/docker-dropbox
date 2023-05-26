@@ -1,8 +1,8 @@
-# Based on Ubuntu 21.10
-FROM ubuntu:21.10
+FROM ubuntu:22.04
 
 # Maintainer
 LABEL maintainer "Alexander Graf <alex@otherguy.io>"
+LABEL maintainer "Daren Darrow <darrow@gmail.com>"
 
 # Required to prevent warnings
 ARG DEBIAN_FRONTEND=noninteractive
@@ -19,6 +19,7 @@ ENV LANG   "C.UTF-8"
 ENV LC_ALL "C.UTF-8"
 
 # Install prerequisites
+RUN apt-get clean all
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
    software-properties-common gnupg2 curl \
@@ -33,8 +34,8 @@ RUN mkdir -p /opt/dropbox /opt/dropbox/.dropbox /opt/dropbox/Dropbox \
  && chown -R dropbox:dropbox /opt/dropbox
 
 # https://help.dropbox.com/installs-integrations/desktop/linux-repository
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FC918B335044912E \
- && add-apt-repository 'deb http://linux.dropbox.com/debian buster main' \
+RUN apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E \
+ && add-apt-repository 'deb https://linux.dropbox.com/ubuntu jammy main' \
  && apt-get update \
  && apt-get -qqy install dropbox \
  && apt-get -qqy autoclean \
@@ -69,7 +70,7 @@ LABEL org.label-schema.name           "Dropbox"
 LABEL org.label-schema.version        "${VERSION}"
 LABEL org.label-schema.build-date     "${BUILD_DATE}"
 LABEL org.label-schema.description    "Standalone Dropbox client"
-LABEL org.label-schema.vcs-url        "https://github.com/otherguy/docker-dropbox"
+LABEL org.label-schema.vcs-url        "https://github.com/darendarrow/docker-dropbox"
 LABEL org.label-schema.vcs-ref        "${VCS_REF}"
 
 # Configurable sleep delay
