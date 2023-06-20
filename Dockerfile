@@ -26,7 +26,7 @@ RUN apt-get clean all \
    libglapi-mesa libxext-dev libxdamage-dev libxshmfence-dev libxxf86vm-dev \
    libxcb-glx0 libxcb-dri2-0 libxcb-dri3-0 libxcb-present-dev \
    ca-certificates gosu tzdata libc6 libxdamage1 libxcb-present0 \
-   libxcb-sync1 libxshmfence1 libxxf86vm1 python3-gpg \
+   libxcb-sync1 libxshmfence1 libxxf86vm1 python3-gpg python3-pip \
  && apt-get upgrade -y \
  && rm -rf /var/lib/apt/lists/*
 
