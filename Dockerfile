@@ -31,10 +31,10 @@ RUN apt-get clean all \
  && rm -rf /var/lib/apt/lists/*
 
 # Upgrade python modules
-RUN pip list --outdated \
-  | grep -Ev "Package|^-" \
-  | awk '{print $1}'\
-  | while IFS= read -r line ; do pip install "$line" -U ; done
+#RUN pip list --outdated \
+#  | grep -Ev "Package|^-" \
+#  | awk '{print $1}'\
+#  | while IFS= read -r line ; do pip install "$line" -U ; done
 
 # Create user and group
 RUN mkdir -p /opt/dropbox \
