@@ -19,13 +19,16 @@ ENV LANG   "C.UTF-8"
 ENV LC_ALL "C.UTF-8"
 
 # Install prerequisites
-RUN apt-get update \
+RUN apt-get clean all \
+ && apt-get update \
  && apt-get install -y --no-install-recommends \
    software-properties-common gnupg2 curl wget \
    libglapi-mesa libxext-dev libxdamage-dev libxshmfence-dev libxxf86vm-dev \
    libxcb-glx0 libxcb-dri2-0 libxcb-dri3-0 libxcb-present-dev \
    ca-certificates gosu tzdata libc6 libxdamage1 libxcb-present0 \
-   libxcb-sync1 libxshmfence1 libxxf86vm1 python3-gpg
+   libxcb-sync1 libxshmfence1 libxxf86vm1 python3-gpg \
+ && apt-get upgrade -y \
+ && rm -rf /var/lib/apt/lists/*
 
 # Create user and group
 RUN mkdir -p /opt/dropbox \
